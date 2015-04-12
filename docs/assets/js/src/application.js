@@ -9,7 +9,7 @@
  * details, see http://creativecommons.org/licenses/by/3.0/.
  */
 
-/* global ZeroClipboard */
+/* global ZeroClipboard, addAnchors */
 
 !function ($) {
   'use strict';
@@ -109,6 +109,17 @@
       }, 3000)
     })
 
+    // Modal relatedTarget demo
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text('New message to ' + recipient)
+      modal.find('.modal-body input').val(recipient)
+    })
+
     // Activate animated progress bar
     $('.bs-docs-activate-animated-progressbar').on('click', function () {
       $(this).siblings('.progress').find('.progress-bar-striped').toggleClass('active')
@@ -163,3 +174,8 @@
   })
 
 }(jQuery)
+
+;(function () {
+  'use strict';
+  addAnchors('.bs-docs-container h1, .bs-docs-container h2, .bs-docs-container h3, .bs-docs-container h4, .bs-docs-container h5');
+})();
